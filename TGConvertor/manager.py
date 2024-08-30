@@ -151,7 +151,8 @@ class SessionManager:
         return cls(
             auth_key=session.auth_key,
             dc_id=session.dc_id,
-            api=session.api
+            api=session.api,
+            user_id=session.user_id
         )
 
     async def to_pyrogram_file(self, path: Union[Path, str]):
