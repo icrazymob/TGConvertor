@@ -120,8 +120,9 @@ class PyroSession:
             db.row_factory = aiosqlite.Row
             async with db.execute("SELECT * FROM sessions") as cursor:
                 session = await cursor.fetchone()
-
-        return cls(**session)
+        
+        data = {k:v for k, v in session.items() if k in ['dc_id', 'auth_key', 'user_id', 'is_bot', 'test_mode', 'api_id']}
+        return cls(**data)
 
     @classmethod
     async def validate(cls, path: Union[Path, str]) -> bool:
