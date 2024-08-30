@@ -121,7 +121,7 @@ class PyroSession:
             async with db.execute("SELECT * FROM sessions") as cursor:
                 session = await cursor.fetchone()
         
-        data = {k:v for k, v in session.items() if k in ['dc_id', 'auth_key', 'user_id', 'is_bot', 'test_mode', 'api_id']}
+        data = {k:v for k, v in dict(session).items() if k in ['dc_id', 'auth_key', 'user_id', 'is_bot', 'test_mode', 'api_id']}
         return cls(**data)
 
     @classmethod
